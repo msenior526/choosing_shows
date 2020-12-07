@@ -1,14 +1,16 @@
 require 'pry'
 
-class RetailStore
+class RetailStore 
 
     @@all = []
 
     def initialize(hash)
+        
         hash.each do |key, value|
-            # binding.pry
+            
             self.class.attr_accessor key
             self.send("#{key}=" , value) 
+            binding.pry
         end
         self.class.all << self
     end
@@ -16,5 +18,5 @@ class RetailStore
     def self.all
         @@all
     end
-    
+
 end
