@@ -1,8 +1,6 @@
 # Union Square Retail Guide
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/choosing_shows`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A CLI program that uses an the NYC Open Data API to help the user retrieve information about which retail stores that are in the Union Square area.
 
 ## Installation
 
@@ -22,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Select a business type to retrieve the correlating retail stores. 
 
 ## Development
 
