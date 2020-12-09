@@ -72,4 +72,13 @@ class CLI
         puts "         #{stores[input-1].city_state}"
         puts "         #{stores[input-1].zip_code}"
     end
+
+    def repeat 
+        display_business_types
+        display_retail_stores
+        select_store_msg
+        select_store
+    end
+
+
 end
