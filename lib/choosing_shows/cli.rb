@@ -7,6 +7,8 @@ class CLI
     BUSINESS_TYPE = ["Apparel and Footwear", "Beauty"] 
     def start
         greeting
+        display_retail_stores
+        select_store_msg
         select_store
     end
 
@@ -40,30 +42,34 @@ class CLI
         @stores = RetailStore.all.select do |store|
             store.type_of_business == type
         end
-        display_retail_stores
     end
     
     def display_retail_stores
-        @amount_of_stores = stores.each_with_index do |type, index|
+        stores.each_with_index do |type, index|
             puts "#{index + 1}: #{type.business}"
         end
-       
+        
+    end
+
+    def select_store_msg
+        puts "To get more information about a store, choose a number between 1-#{stores.length}"
     end
 
     def select_store
-        puts "To get more information about a store, choose a number between 1-#{display_retail_stores.length}"
         @input = gets.strip.to_i
-        if !input.between?(1, display_retail_stores.length)
-            puts "ERROR. Input a number between 1-#{display_retail_stores.length}."
-            
+        if !input.between?(1, stores.length)
+            puts "ERROR. Input a number between 1-#{stores.length}."
+            select_store
         else 
-            display_store_info
+           display_store_info
         end
     end
 
     def display_store_info
+        puts "#{stores[input-1].business}"
+        puts "Phone Number: #{stores[input-1].phone_number}"
+        puts "Address: #{stores[input-1].parsed_address}"
+        puts "         #{stores[input-1].city_state}"
+        puts "         #{stores[input-1].zip_code}"
     end
-
-
-
 end
