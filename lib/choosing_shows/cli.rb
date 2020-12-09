@@ -71,6 +71,15 @@ class CLI
         puts "Address: #{stores[input-1].parsed_address}"
         puts "         #{stores[input-1].city_state}"
         puts "         #{stores[input-1].zip_code}"
+        puts "Would you like to choose a different store? Enter 'yes' or 'no'."
+        input = gets.strip
+        if !input.downcase == "yes" || !input.downcase == "no"
+            puts "ERROR. You have to enter 'yes' or 'no'. "
+        elsif input.downcase == "yes"
+            repeat
+        elsif input.downcase == "no"
+            goodbye
+        end
     end
 
     def repeat 
@@ -80,5 +89,8 @@ class CLI
         select_store
     end
 
-
+    def goodbye
+        puts "Thanks for using the Union Square Retail Guide CLI app!"
+        exit
+    end
 end
