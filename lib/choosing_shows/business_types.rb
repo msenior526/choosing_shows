@@ -12,4 +12,12 @@ class BusinessType
         @@all
     end
 
+    def retail_stores
+        RetailStores.all.select do |store|
+            store.business_type == self
+        end
+    end
+
 end
+
+ 
