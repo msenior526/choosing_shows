@@ -30,7 +30,7 @@ class CLI
     def user_input
         @input = gets.strip.to_i
         if !input.between?(1, BUSINESS_TYPE.length)
-            puts "ERROR. Input a number between 1-2."
+            puts "ERROR. Input a number between 1-2.".red
             user_input
         else
           find_businesses
@@ -58,7 +58,7 @@ class CLI
     def select_store
         @input = gets.strip.to_i
         if !input.between?(1, stores.length)
-            puts "ERROR. Input a number between 1-#{stores.length}."
+            puts "ERROR. Input a number between 1-#{stores.length}.".red
             select_store
         else 
            display_store_info
@@ -72,10 +72,16 @@ class CLI
         puts "         #{stores[input-1].city_state}"
         puts "         #{stores[input-1].zip_code}"
         puts "Would you like to choose a different store? Enter 'yes' or 'no'."
+        choice
+    end
+
+    def choice
         input = gets.strip
-        if !input.downcase == "yes" || !input.downcase == "no"
-            puts "ERROR. You have to enter 'yes' or 'no'. "
+        if input.downcase != "yes" && input.downcase != "no"
+            puts "ERROR. You have to enter 'yes' or 'no'. ".red
+            choice
         elsif input.downcase == "yes"
+            puts "Redirecting.."
             repeat
         elsif input.downcase == "no"
             goodbye
