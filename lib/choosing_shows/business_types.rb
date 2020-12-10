@@ -17,6 +17,7 @@ class BusinessType
             store.business_type == self
         end
     end
+    binding.pry
 
 end
 

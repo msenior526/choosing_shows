@@ -21,7 +21,7 @@ class CLI
 
     def display_business_types
         BUSINESS_TYPE.each_with_index do |type, index|
-            puts "#{index + 1}: #{type}"
+            puts "#{index + 1}: #{type.green}"
         end
         puts "Enter a number between 1-#{BUSINESS_TYPE.length} to choose which business type you would like to see more of."
         user_input
@@ -46,7 +46,7 @@ class CLI
     
     def display_retail_stores
         stores.each_with_index do |type, index|
-            puts "#{index + 1}: #{type.business}"
+            puts "#{index + 1}: #{type.business.blue}"
         end
         
     end
@@ -66,7 +66,7 @@ class CLI
     end
 
     def display_store_info
-        puts "#{stores[input-1].business}"
+        puts "#{stores[input-1].business}".blue
         puts "Phone Number: #{stores[input-1].phone_number}"
         puts "Address: #{stores[input-1].parsed_address}"
         puts "         #{stores[input-1].city_state}"
@@ -96,7 +96,7 @@ class CLI
     end
 
     def goodbye
-        puts "Thanks for using the Union Square Retail Guide CLI app!"
+        puts "Thanks for using the Union Square Retail Guide CLI app!".yellow
         exit
     end
 end
