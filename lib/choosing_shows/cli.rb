@@ -5,6 +5,7 @@ class CLI
     attr_accessor :input, :stores
 
     BUSINESS_TYPE = ["Apparel and Footwear", "Beauty"] 
+    
     def start
         greeting
         display_retail_stores
