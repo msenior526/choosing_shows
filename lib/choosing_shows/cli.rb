@@ -3,7 +3,7 @@ require "tty-prompt"
 
 class CLI
 
-    attr_accessor :input, :stores
+    attr_accessor :input, :stores, :choices
 
     BUSINESS_TYPE = ["Apparel and Footwear", "Beauty"] 
     
@@ -11,7 +11,9 @@ class CLI
         greeting
         display_retail_stores
         select_store_msg
-        select_store
+        #select_store
+        choose_store
+        display_store_info
     end
 
     def greeting
@@ -49,9 +51,17 @@ class CLI
     end
     
     def display_retail_stores
-        stores.each_with_index do |type, index|
-            puts "#{index + 1}: #{type.business.blue}"
+        @choices = []
+        stores.collect do |type|
+            choices << type.business
         end
+         choices
+    end
+
+    def choose_store
+        prompt = TTY::Prompt.new
+        prompt.enum_select("Select a store?", choices, per_page: 10)
+        
     end
 
     def select_store_msg
@@ -70,11 +80,11 @@ class CLI
 
     def display_store_info
         prompt = TTY::Prompt.new
-        puts "#{stores[input-1].business}".blue
-        puts "Phone Number: #{stores[input-1].phone_number}"
-        puts "Address: #{stores[input-1].parsed_address}"
-        puts "         #{stores[input-1].city_state}"
-        puts "         #{stores[input-1].zip_code}"
+        puts "#{stores[input].business}".blue
+        puts "Phone Number: #{stores[input].phone_number}"
+        puts "Address: #{stores[input].parsed_address}"
+        puts "         #{stores[input].city_state}"
+        puts "         #{stores[input].zip_code}"
         prompt.yes?("Would you like to choose a different store? Enter 'yes' or 'no'.".white)? repeat : goodbye
     end
 
@@ -82,7 +92,9 @@ class CLI
         display_business_types
         display_retail_stores
         select_store_msg
-        select_store
+        #select_store
+        choose_store
+        display_store_info
     end
 
     def goodbye
