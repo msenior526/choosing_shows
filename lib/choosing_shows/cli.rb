@@ -11,8 +11,8 @@ class CLI
         greeting
         display_retail_stores
         select_store_msg
-        #select_store
-        choose_store
+        select_store
+        #choose_store
         display_store_info
     end
 
@@ -51,18 +51,19 @@ class CLI
     end
     
     def display_retail_stores
-        @choices = []
-        stores.collect do |type|
-            choices << type.business
+        stores.each_with_index do |type, index|
+            puts "#{index + 1}: #{type.business.green}"
         end
-         choices
     end
 
-    def choose_store
-        prompt = TTY::Prompt.new
-        prompt.enum_select("Select a store?", choices, per_page: 10)
-        
-    end
+    #def choose_store
+     #   @choices = stores.collect do |type|
+      #      type.business
+       # end
+        #prompt = TTY::Prompt.new
+        #prompt.enum_select("Select a store.", display_retail_stores, per_page: 10)
+        #display_store_info
+    #end
 
     def select_store_msg
         puts "To get more information about a store, choose a number between 1-#{stores.length}".white
@@ -80,11 +81,11 @@ class CLI
 
     def display_store_info
         prompt = TTY::Prompt.new
-        puts "#{stores[input].business}".blue
-        puts "Phone Number: #{stores[input].phone_number}"
-        puts "Address: #{stores[input].parsed_address}"
-        puts "         #{stores[input].city_state}"
-        puts "         #{stores[input].zip_code}"
+        puts "#{stores[input-1].business}".blue
+        puts "Phone Number: #{stores[input-1].phone_number}"
+        puts "Address: #{stores[input-1].parsed_address}"
+        puts "         #{stores[input-1].city_state}"
+        puts "         #{stores[input-1].zip_code}"
         prompt.yes?("Would you like to choose a different store? Enter 'yes' or 'no'.".white)? repeat : goodbye
     end
 
@@ -92,8 +93,8 @@ class CLI
         display_business_types
         display_retail_stores
         select_store_msg
-        #select_store
-        choose_store
+        select_store
+        # choose_store
         display_store_info
     end
 
