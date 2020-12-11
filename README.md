@@ -19,8 +19,7 @@ Or install it yourself as:
     $ gem install choosing_shows
 
 ## Usage
-
-Select a business type to retrieve the correlating retail stores. 
+Select one out of two business types by number to retrieve the correlating retail stores in the Union Square area. You will then be able to choose a store by its number to find information on its address and phone number. After a stores info is displayed, you will be asked if you want to choose another store. If so, you will be brought back to choosing a business type. if not, the program will exit.
 
 ## Development
 
