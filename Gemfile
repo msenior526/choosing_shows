@@ -10,6 +10,5 @@ end
 
 source "https://ttytoolkit.org/components/" do 
     gem "tty-color"
-    gem
-    gem
+    gem "tty-prompt"
 end

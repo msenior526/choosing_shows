@@ -14,8 +14,10 @@ class CLI
     end
 
     def greeting
-        puts "Welcome, to the Union Square retail guide."
-        puts "Choose which business type you would like to see more of." 
+        puts ""
+        puts "Welcome, to the Union Square retail guide.".white
+        puts ""
+        puts "Choose which business type you would like to see more of.".white
         API.get_businesses
         display_business_types  
     end
@@ -24,7 +26,7 @@ class CLI
         BUSINESS_TYPE.each_with_index do |type, index|
             puts "#{index + 1}: #{type.green}"
         end
-        puts "Enter a number between 1-#{BUSINESS_TYPE.length} to choose which business type you would like to see more of."
+        puts "Enter a number between 1-#{BUSINESS_TYPE.length} to choose which business type you would like to see more of.".white
         user_input
     end
 
@@ -52,7 +54,7 @@ class CLI
     end
 
     def select_store_msg
-        puts "To get more information about a store, choose a number between 1-#{stores.length}"
+        puts "To get more information about a store, choose a number between 1-#{stores.length}".white
     end
 
     def select_store
@@ -71,7 +73,7 @@ class CLI
         puts "Address: #{stores[input-1].parsed_address}"
         puts "         #{stores[input-1].city_state}"
         puts "         #{stores[input-1].zip_code}"
-        puts "Would you like to choose a different store? Enter 'yes' or 'no'."
+        puts "Would you like to choose a different store? Enter 'yes' or 'no'.".white
         choice
     end
 
@@ -81,7 +83,6 @@ class CLI
             puts "ERROR. You have to enter 'yes' or 'no'. ".red
             choice
         elsif input.downcase == "yes"
-            puts "Redirecting.."
             repeat
         elsif input.downcase == "no"
             goodbye
