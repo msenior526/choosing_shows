@@ -49,7 +49,6 @@ class CLI
         stores.each_with_index do |type, index|
             puts "#{index + 1}: #{type.business.blue}"
         end
-        
     end
 
     def select_store_msg
