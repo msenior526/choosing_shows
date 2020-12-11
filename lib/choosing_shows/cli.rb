@@ -1,4 +1,5 @@
 require 'pry'
+require "tty-prompt"
 
 class CLI
 
@@ -68,25 +69,13 @@ class CLI
     end
 
     def display_store_info
+        prompt = TTY::Prompt.new
         puts "#{stores[input-1].business}".blue
         puts "Phone Number: #{stores[input-1].phone_number}"
         puts "Address: #{stores[input-1].parsed_address}"
         puts "         #{stores[input-1].city_state}"
         puts "         #{stores[input-1].zip_code}"
-        puts "Would you like to choose a different store? Enter 'yes' or 'no'.".white
-        choice
-    end
-
-    def choice
-        input = gets.strip
-        if input.downcase != "yes" && input.downcase != "no"
-            puts "ERROR. You have to enter 'yes' or 'no'. ".red
-            choice
-        elsif input.downcase == "yes"
-            repeat
-        elsif input.downcase == "no"
-            goodbye
-        end
+        prompt.yes?("Would you like to choose a different store? Enter 'yes' or 'no'.".white)? repeat : goodbye
     end
 
     def repeat 
