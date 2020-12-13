@@ -4,7 +4,7 @@ require "tty-prompt"
 class CLI
 
     attr_accessor :input, :stores, :choices, :selection
-
+    
     BUSINESS_TYPE = ["Apparel and Footwear", "Beauty"] 
     
     def start

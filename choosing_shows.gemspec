@@ -6,8 +6,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["msenior526"]
   spec.email         = ["msenior526@gmail.com"]
 
-  spec.summary       = "This summary is a summary."
-  spec.description   = "This description is a description."
+  spec.summary       = "Users are able to view select retail stores in the Union Square area."
+  spec.description   = "Users will choose a retail business type, a list of stores that correspond to that type will then be displayed. The user will then be able to choose from one of those stores to view the stores info."
   spec.homepage      = "https://github.com/msenior526/choosing_shows.git"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
