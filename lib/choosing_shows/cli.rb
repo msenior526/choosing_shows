@@ -31,9 +31,9 @@ class CLI
         puts ""
         picture
         puts ""
-        puts "Welcome, to the Union Square retail guide.".white
+        puts "Welcome, to the Union Square Retail Guide. Here you can view all of the retail businesses in only the Union Square area.".white
         puts ""
-        puts "Choose which business type you would like to see more of.".white
+        puts "Here's a list of the business types you can choose from.".white
         API.get_businesses
         display_business_types  
     end
@@ -74,7 +74,7 @@ class CLI
     end
 
     def select_store_msg
-        puts "To get more information about a store, choose a number between 1-#{stores.length}".white
+        puts "To get more information about a store, choose a number between 1-#{stores.length}.".white
     end
 
     def display_store_info

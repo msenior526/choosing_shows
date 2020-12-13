@@ -25,7 +25,7 @@ class BusinessType
     end
 
     def self.find_or_create_by_type(type)
-       self.find_by_type(type) || self.new(type)
+       self.find_by_type(type.strip) || self.new(type.strip)
     end
 
 end
