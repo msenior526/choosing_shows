@@ -17,7 +17,6 @@ class API
                 hash = {business_type: type_business, parsed_address: business["parsed_address"], city_state: business["city_state"],zip_code: business["zip_code"], phone_number: business["phone_number"], business: business["business"]   }
                 RetailStore.new(hash)
             end
-            # && business["type_of_business"] == "Apparel and Footwear" || business["type_of_business"] == "Beauty"
         end
     end
 end

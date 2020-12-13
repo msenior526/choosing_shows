@@ -50,7 +50,7 @@ class CLI
     def user_input
         @input = gets.strip.to_i
         if !input.between?(1, BusinessType.all.length)
-            puts "ERROR. Input a number between 1-2.".red
+            puts "ERROR. Input a number between 1-#{BusinessType.all.length}.".red
             user_input
         else
           find_businesses
