@@ -14,7 +14,24 @@ class CLI
         display_store_info
     end
 
+    def picture
+        puts "
+                                                    888      
+                                                    888      
+                                                    888      
+88888b.  .d88b. 888  888  888888  888 .d88b. 888d888888  888 
+888 `88bd8P  Y8b888  888  888888  888d88``88b888P`  888 .88P 
+888  88888888888888  888  888888  888888  888888    888888K  
+888  888Y8b.    Y88b 888 d88PY88b 888Y88..88P888    888 `88b 
+888  888 `Y8888  `Y8888888P`  `Y88888 `Y88P` 888    888  888 
+                                  888                        
+                             Y8b d88P                        
+                              `Y88P`         ".green     
+    end
+
     def greeting
+        puts ""
+        picture
         puts ""
         puts "Welcome, to the Union Square retail guide.".white
         puts ""
