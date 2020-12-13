@@ -33,7 +33,8 @@ class CLI
         puts ""
         puts "Welcome, to the Union Square Retail Guide. Here you can view all of the retail businesses in only the Union Square area.".white
         puts ""
-        puts "Here's a list of the business types you can choose from.".white
+        puts "Here's a list of the business types you can choose from:".white
+        puts ""
         API.get_businesses
         display_business_types  
     end
@@ -43,6 +44,7 @@ class CLI
         BusinessType.all.each_with_index do |types, index|
             puts "#{index + 1}: #{types.type.green}"
         end
+        puts ""
         puts "Enter a number between 1-#{BusinessType.all.length} to choose which business type you would like to see more of.".white
         user_input
     end
@@ -50,7 +52,7 @@ class CLI
     def user_input
         @input = gets.strip.to_i
         if !input.between?(1, BusinessType.all.length)
-            puts "ERROR. Input a number between 1-#{BusinessType.all.length}.".red
+            puts "INVALID INPUT. Please enter a number between 1-#{BusinessType.all.length}.".red
             user_input
         else
           find_businesses
@@ -80,11 +82,13 @@ class CLI
     def display_store_info
         prompt = TTY::Prompt.new
         store = stores.find {|store| store.business == selection}
+        puts ""
         puts "#{store.business}".blue
         puts "Phone Number: #{store.phone_number}"
         puts "Address: #{store.parsed_address}"
         puts "         #{store.city_state}"
         puts "         #{store.zip_code}"
+        puts ""
         prompt.yes?("Would you like to choose a different store?".white)? repeat : goodbye
     end
 
@@ -96,7 +100,8 @@ class CLI
     end
 
     def goodbye
-        puts "Thanks for using the Union Square Retail Guide CLI app!".yellow
+        puts ""
+        puts "Thanks for using the Union Square Retail Guide CLI!".yellow
         exit
     end
 end
