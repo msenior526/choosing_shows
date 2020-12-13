@@ -3,16 +3,16 @@ require "tty-prompt"
 
 class CLI
 
-    attr_accessor :input, :stores, :choices
+    attr_accessor :input, :stores, :choices, :selection
 
     BUSINESS_TYPE = ["Apparel and Footwear", "Beauty"] 
     
     def start
         greeting
-        display_retail_stores
+        #display_retail_stores
         select_store_msg
-        select_store
-        #choose_store
+        #select_store
+        choose_store
         display_store_info
     end
 
@@ -24,6 +24,7 @@ class CLI
         API.get_businesses
         display_business_types  
     end
+    
 
     def display_business_types
         BUSINESS_TYPE.each_with_index do |type, index|
@@ -46,55 +47,56 @@ class CLI
     def find_businesses
         type = BUSINESS_TYPE[input - 1]
         @stores = RetailStore.all.select do |store|
-            store.type_of_business == type
+            store.business_type.type == type
         end
     end
     
-    def display_retail_stores
-        stores.each_with_index do |type, index|
-            puts "#{index + 1}: #{type.business.green}"
-        end
-    end
+    # def display_retail_stores
+    #     @stores.each_with_index do |type, index|
+    #         puts "#{index + 1}: #{type.business.green}"
+    #     end
+    # end
 
-    #def choose_store
-     #   @choices = stores.collect do |type|
-      #      type.business
-       # end
-        #prompt = TTY::Prompt.new
-        #prompt.enum_select("Select a store.", display_retail_stores, per_page: 10)
-        #display_store_info
-    #end
+    def choose_store
+       @choices = stores.collect do |type|
+           type.business
+       end
+        prompt = TTY::Prompt.new
+        @selection = prompt.enum_select("Select a store.", choices, per_page: 10)
+        display_store_info
+    end
 
     def select_store_msg
         puts "To get more information about a store, choose a number between 1-#{stores.length}".white
     end
 
-    def select_store
-        @input = gets.strip.to_i
-        if !input.between?(1, stores.length)
-            puts "ERROR. Input a number between 1-#{stores.length}.".red
-            select_store
-        else 
-           display_store_info
-        end
-    end
+  #  def select_store
+    #    @input = gets.strip.to_i
+     #   if !input.between?(1, stores.length)
+    #         puts "ERROR. Input a number between 1-#{stores.length}.".red
+    #         select_store
+    #     else 
+    #        display_store_info
+    #     end
+    # end
 
     def display_store_info
         prompt = TTY::Prompt.new
-        puts "#{stores[input-1].business}".blue
-        puts "Phone Number: #{stores[input-1].phone_number}"
-        puts "Address: #{stores[input-1].parsed_address}"
-        puts "         #{stores[input-1].city_state}"
-        puts "         #{stores[input-1].zip_code}"
-        prompt.yes?("Would you like to choose a different store? Enter 'yes' or 'no'.".white)? repeat : goodbye
+        store = stores.find {|store| store.business == selection}
+        puts "#{store.business}".blue
+        puts "Phone Number: #{store.phone_number}"
+        puts "Address: #{store.parsed_address}"
+        puts "         #{store.city_state}"
+        puts "         #{store.zip_code}"
+        prompt.yes?("Would you like to choose a different store?".white)? repeat : goodbye
     end
 
     def repeat 
         display_business_types
-        display_retail_stores
+       # display_retail_stores
         select_store_msg
-        select_store
-        # choose_store
+        #select_store
+        choose_store
         display_store_info
     end
 

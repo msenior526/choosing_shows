@@ -2,8 +2,6 @@ require 'pry'
 
 class RetailStore 
 
-    attr_accessor :business_type
-
     @@all = []
 
     def initialize(hash)
