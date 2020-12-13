@@ -5,8 +5,6 @@ class CLI
 
     attr_accessor :input, :stores, :choices, :selection
     
-    BUSINESS_TYPE = ["Apparel and Footwear", "Beauty"] 
-    
     def start
         greeting
         select_store_msg
@@ -16,17 +14,17 @@ class CLI
 
     def picture
         puts "
-                                                    888      
-                                                    888      
-                                                    888      
-88888b.  .d88b. 888  888  888888  888 .d88b. 888d888888  888 
-888 `88bd8P  Y8b888  888  888888  888d88``88b888P`  888 .88P 
-888  88888888888888  888  888888  888888  888888    888888K  
-888  888Y8b.    Y88b 888 d88PY88b 888Y88..88P888    888 `88b 
-888  888 `Y8888  `Y8888888P`  `Y88888 `Y88P` 888    888  888 
-                                  888                        
-                             Y8b d88P                        
-                              `Y88P`         ".green     
+                                                                888      
+                                                                888      
+                                                                888      
+            88888b.  .d88b. 888  888  888888  888 .d88b. 888d888888  888 
+            888 `88bd8P  Y8b888  888  888888  888d88``88b888P`  888 .88P 
+            888  88888888888888  888  888888  888888  888888    888888K  
+            888  888Y8b.    Y88b 888 d88PY88b 888Y88..88P888    888 `88b 
+            888  888 `Y8888  `Y8888888P`  `Y88888 `Y88P` 888    888  888 
+                                            888                        
+                                        Y8b d88P                        
+                                        `Y88P`         ".green     
     end
 
     def greeting
@@ -60,7 +58,7 @@ class CLI
     end
 
     def find_businesses
-        type = BUSINESS_TYPE[input - 1]
+        type = BusinessType.all[input - 1].type
         @stores = RetailStore.all.select do |store|
             store.business_type.type == type
         end
