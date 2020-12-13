@@ -42,16 +42,16 @@ class CLI
     
 
     def display_business_types
-        BUSINESS_TYPE.each_with_index do |type, index|
-            puts "#{index + 1}: #{type.green}"
+        BusinessType.all.each_with_index do |types, index|
+            puts "#{index + 1}: #{types.type.green}"
         end
-        puts "Enter a number between 1-#{BUSINESS_TYPE.length} to choose which business type you would like to see more of.".white
+        puts "Enter a number between 1-#{BusinessType.all.length} to choose which business type you would like to see more of.".white
         user_input
     end
 
     def user_input
         @input = gets.strip.to_i
-        if !input.between?(1, BUSINESS_TYPE.length)
+        if !input.between?(1, BusinessType.all.length)
             puts "ERROR. Input a number between 1-2.".red
             user_input
         else
