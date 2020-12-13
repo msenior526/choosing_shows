@@ -9,9 +9,7 @@ class CLI
     
     def start
         greeting
-        #display_retail_stores
         select_store_msg
-        #select_store
         choose_store
         display_store_info
     end
@@ -50,12 +48,6 @@ class CLI
             store.business_type.type == type
         end
     end
-    
-    # def display_retail_stores
-    #     @stores.each_with_index do |type, index|
-    #         puts "#{index + 1}: #{type.business.green}"
-    #     end
-    # end
 
     def choose_store
        @choices = stores.collect do |type|
@@ -70,16 +62,6 @@ class CLI
         puts "To get more information about a store, choose a number between 1-#{stores.length}".white
     end
 
-  #  def select_store
-    #    @input = gets.strip.to_i
-     #   if !input.between?(1, stores.length)
-    #         puts "ERROR. Input a number between 1-#{stores.length}.".red
-    #         select_store
-    #     else 
-    #        display_store_info
-    #     end
-    # end
-
     def display_store_info
         prompt = TTY::Prompt.new
         store = stores.find {|store| store.business == selection}
@@ -93,9 +75,7 @@ class CLI
 
     def repeat 
         display_business_types
-       # display_retail_stores
         select_store_msg
-        #select_store
         choose_store
         display_store_info
     end
