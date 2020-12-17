@@ -5,6 +5,8 @@ module ChoosingShows
 end
 
 require 'net/http'
+require 'open-uri'
+require 'json'
 require 'awesome_print'
 require 'tty-color'
 require 'tty-prompt'
